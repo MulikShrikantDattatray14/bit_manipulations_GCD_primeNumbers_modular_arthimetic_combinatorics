@@ -1,0 +1,29 @@
+Problem Description :
+You are given two integers A and B.
+If B-th bit in A is set, make it unset.
+If B-th bit in A is unset, leave as it is.
+Return the updated A value.
+
+==============================================================================
+Approach-1 : 
+
+function checkbit(A, B) {
+    return (A >> B) & 1 == 1;
+
+
+}
+
+module.exports = {
+    //param A : integer
+    //param B : integer
+    //return an integer
+    solve: function (A, B) {
+        if (checkbit(A, B)) {
+            A = A - (1 << B);
+        }
+        return A;
+    }
+
+};
+
+=============================================================================

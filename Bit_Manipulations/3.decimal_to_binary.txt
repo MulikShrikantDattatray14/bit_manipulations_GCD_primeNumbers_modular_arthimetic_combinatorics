@@ -1,0 +1,2 @@
+Which of the following is a correct conversion of 76 (base 10) to binary?
+The conversion of 76(base 10) to binary is 1001100.

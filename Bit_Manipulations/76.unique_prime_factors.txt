@@ -1,0 +1,90 @@
+Problem statement:-
+
+You are given an integer 'N'.
+You must return the unique prime factors of 'N' in increasing order.
+For Example:
+For ‘N’ = 10.
+
+Unique prime factors are 2 and 5.
+
+Hence we return {2, 5}.
+Detailed explanation ( Input/output format, Notes, Images )
+Sample Input 1:
+35
+Sample Output 1:
+5 7
+Explanation For Sample Output 1:
+Unique prime factors are 5 and 7.
+
+Hence we return {5, 7}.
+Sample Input 2:
+14
+Sample Output 2:
+2 7
+
+
+//==========================================================================================================================================================
+
+//https://www.youtube.com/watch?v=5gFC-ayyQMk
+function findPrimeFactors(n) {
+  let primeFactors = [];
+
+  for (let div = 2; div * div <= n; div++) {
+    if (n % div === 0) {
+      // we need div to be taken into consideration only once
+      primeFactors.push(div);
+      while (n % div === 0) {
+        n = n / div;
+      }
+    }
+  }
+
+  if (n !== 1) {
+    primeFactors.push(n);
+  }
+
+  return primeFactors;
+}
+
+let n1 = 35;
+let primeFactors = findPrimeFactors(n1);
+console.log("approach -1 ");
+// Print the prime factors or use them as needed
+console.log(primeFactors);
+
+//====================================================================================================
+
+//=====================================================================
+//way-2 :-
+
+// multiply of the entire output array results into the input . Example when A=35 ,ans is [5,7]
+let A = 35;
+let n = A;
+let start = [];
+for (let i = 0; i <= n; i++) {
+  start[i] = true;
+}
+
+// we know 1 is not prime.
+start[0] = start[1] = false;
+// if a numer is prime ,it wont have a single factor in range [2 , Math.sqrt(N)]
+for (let i = 2; i * i <= n; i++) {
+  if (start[i] == true) {
+    // if start[i]  is a prime or is a factor of some numbers , then its multiples cannot be prime.
+    for (let j = i * i; j <= n; j = j + i) {
+      start[j] = false;
+    }
+  }
+}
+
+let ans = [];
+for (let k = 0; k <= n; k++) {
+  if (start[k] == true && A % k == 0) {
+    ans.push(k);
+  }
+}
+console.log("approach -2 ");
+console.log(ans);
+
+
+// note : also try using the spf method , the very first element is to be pushed into the array .(follow the approach that was followed in the approach-1)

@@ -1,0 +1,61 @@
+Given an integer n, return true if it is a power of two. Otherwise, return false.
+An integer n is a power of two, if there exists an integer x such that n == 2x.
+Example 1:
+
+Input: n = 1
+Output: true
+Explanation: 2^0 = 1
+Example 2:
+
+Input: n = 16
+Output: true
+Explanation: 2^4 = 16
+Example 3:
+
+Input: n = 3
+Output: false
+ 
+
+ //===============================================================================================
+
+ //logic : count the number of set bits in the the bit representation of the number , and if the count is exactly equal to 1, then it is a power of 2. 
+
+ --------------------------------------------------------------------------------
+
+ // approach-1 : 
+function isPowerOfTwo (n) {
+    let ans= n.toString(2)
+ans=Array.from(ans)
+let count=0;
+for(let i=0;i<ans.length;i++){
+    if(ans[i]==1) count++
+}
+if(count==1 && n>0) return true;// also handles negative input
+else return  false;
+};
+
+
+//===================================================================================================================================================================
+//aproach-2 : 
+
+function isPowerOfTwo(n) {
+    return n > 0 && (n & (n - 1)) === 0;
+}
+
+// Test cases
+console.log(isPowerOfTwo(1));   // Output: true
+console.log(isPowerOfTwo(16));  // Output: true
+console.log(isPowerOfTwo(3));   // Output: false
+
+
+let n =3;
+let ans = n & n
+console.log(ans)
+
+n=5// 101
+n=4// 100
+
+n=8 // 1000
+n=7//  0111
+
+//===================================================================================================================================================================

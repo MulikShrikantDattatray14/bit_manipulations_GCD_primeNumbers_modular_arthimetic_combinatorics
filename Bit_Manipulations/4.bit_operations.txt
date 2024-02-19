@@ -1,0 +1,6 @@
+Given a = 1010011 and b = 1001001, their OR, XOR and AND are -
+
+a = 1010011 and b = 1001001
+a | b = 1011011 ( any one is true ,then it return true )
+a ^ b = 0011010 ( same bits return zero and different bits return one )
+a & b = 1000001 ( both should be true , only then returns true )

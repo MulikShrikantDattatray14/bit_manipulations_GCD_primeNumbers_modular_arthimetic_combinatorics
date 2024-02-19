@@ -1,0 +1,49 @@
+Problem statement :
+
+You are given an integer 'N'.
+Return 'odd' if the given number 'N' is odd, else return 'even'.
+For Example:
+N=5
+Output: odd
+Detailed explanation ( Input/output format, Notes, Images )
+Sample Input 1:
+9
+Sample Output 1:
+odd
+Sample Input 2:
+6
+Sample Output 2:
+even
+
+===============================================================================================
+
+
+let a = 21;
+let b = 41;
+let c = 61;
+let d = 81;
+let e = 101;
+
+console.log(a.toString(2));
+console.log(b.toString(2));
+console.log(c.toString(2));
+console.log(d.toString(2));
+console.log(e.toString(2));
+
+// num & 1=0 ( then num is even)
+// num & 1=1 ( then num is odd)
+
+function oddEvenCheck(N) {
+  if (N & 1) {
+    // 0th bit is set , then the number is odd
+    return "odd";
+  } else {
+    // 0th bit is unset , then the number is even
+    return "even";
+  }
+}
+
+// Example usage:
+let N = 5;
+let result = oddEvenCheck(N);
+console.log(`The number ${N} is ${result}.`);

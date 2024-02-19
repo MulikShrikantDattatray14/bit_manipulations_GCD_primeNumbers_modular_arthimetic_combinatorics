@@ -1,0 +1,27 @@
+logic :- 
+
+Sure, the left shift (<<) and right shift (>>) operators are used in bit manipulation.
+
+A.Left Shift (<<):-
+
+1.The left shift operator shifts the bits of a binary number to the left.
+2. Thus every bit that gets shifted to the left , multiplies the answer by 2. 
+Example: 5 << 2 means shifting the binary representation of 5 two positions to the left.
+In binary, 5 is 101, and 5 << 2 results in 10100, which is 20 in decimal.
+
+
+B.Right Shift (>>):-
+
+1.The right shift operator shifts the bits of a binary number to the right.
+2. Thus every bit that gets shifted to the right , divides the answer by 2. 
+Example: 8 >> 2 means shifting the binary representation of 8 two positions to the right.
+In binary, 8 is 1000, and 8 >> 2 results in 10, which is 2 in decimal.
+In summary, left shift (<<) multiplies a number by 2 raised to the power of the specified shift count, and right shift (>>) divides a number by 2 raised to the power of the specified shift count.
+
+ans : 1<<N
+
+////////////////////////////
+
+let n =(1<<5)///32
+ let bit = n.toString(2)//100000
+ console.log(bit)

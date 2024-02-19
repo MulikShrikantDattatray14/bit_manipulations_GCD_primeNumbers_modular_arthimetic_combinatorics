@@ -1,0 +1,63 @@
+204. Count Primes-https://leetcode.com/problems/count-primes/description/
+
+Given an integer n, return the number of prime numbers that are strictly less than n.
+
+ 
+
+Example 1:
+
+Input: n = 10
+Output: 4
+Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
+Example 2:
+
+Input: n = 0
+Output: 0
+Example 3:
+
+Input: n = 1
+Output: 0
+ 
+
+Constraints:
+
+0 <= n <= 5 * 106
+
+======================================================================================================================================================================================
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var countPrimes = function(n) {
+   if(n==0 || n==1 || n==2) return 0; 
+    
+  
+let start = [];
+for (let i = 0; i < n; i++) {
+  start[i] = true;
+}
+
+// we know 1 is not prime.
+start[0] = start[1] = false;
+// if a numer is prime ,it wont have a single factor in range [2 , Math.sqrt(N)]
+for (let i = 2; i * i < n; i++) {
+  if (start[i] == true) {
+    // if start[i]  is a prime or is a factor of some numbers , then its multiples cannot be prime.
+    for (let j = i * i; j <= n; j = j + i) {
+      start[j] = false;
+    }
+  }
+}
+
+let ans = [];
+for (let k = 0; k < n; k++) {
+  if (start[k] == true) {
+    ans.push(k);
+  }
+}
+return (ans.length);
+
+};
+
+//======================================================================================================================================================================================

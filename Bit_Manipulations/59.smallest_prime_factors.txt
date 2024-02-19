@@ -1,0 +1,19 @@
+let n = 20;
+let spf = new Array(n + 1);
+for (let i = 2; i <= n; i++) {
+  spf[i] = i;
+}
+// if a numer is prime ,it wont have a single factor in range [2 , Math.sqrt(N)]
+for (let i = 2; i <= Math.sqrt(n); i++) {
+  if (spf[i] == i) {
+    // i is prime ,so its multiplies will also have same the spf
+    for (let j = i * i; j <= n; j += i) {
+      // iterate on multiplies of i
+      if (spf[j] == j) {
+        // if its not updated , update with the spf
+        spf[j] = i;
+      }
+    }
+  }
+}
+console.log(spf);

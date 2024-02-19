@@ -1,0 +1,45 @@
+Problem statement :-
+
+You are given two numbers 'a' and 'b' as input.
+You must swap the values of 'a' and 'b'.
+For Example:
+Input: 
+'a' = 8, 'b' = 5
+Output:
+5 8
+
+Explanation:
+Initially, the value of 'a' and 'b' is 8 and 5, respectively.
+
+After swapping, the value of 'a' is 5, and the value of 'b' is 8.
+
+//==================================================================================================================================================================================
+// using temp variable :
+
+function swap(num1, num2) {
+  let temp = num1;
+  num1 = num2;
+  num2 = temp;
+
+  return new Array(num1, num2);
+}
+
+// using the bit manipulation concept-   // Using XOR to swap values without using a temporary variable :
+
+function swapNumbers(a, b) {
+  // Using XOR to swap values without using a temporary variable
+  a = a ^ b;
+  b = a ^ b;
+  a = a ^ b;
+  return [a, b];
+}
+
+// Example usage:
+let a = 8;
+let b = 5;
+console.log("Before swapping: a =", a, ", b =", b);
+[a, b] = swapNumbers(a, b);
+
+console.log("After swapping: a =", a, ", b =", b);
+
+//===================================================================================================

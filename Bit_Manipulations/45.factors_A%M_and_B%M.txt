@@ -1,0 +1,45 @@
+question :- given A&B, A>B , find the no of M such that A%M=B%M and M>1.
+
+eg: A=16 ; B=4; M=2,3,4,6,12 , ans =5 , which is also the factor of 12 i.e A-B
+
+//logic = M has to be factors of (A-B).
+
+//==================================================================================================================================================================================
+
+function findM(A, B) {
+  if (A <= B) {
+    console.error("A should be greater than B.");
+    return 0;
+  }
+
+  const diff = A - B;
+  let count = 0;
+
+  // Iterate up to the square root of (A - B)
+  for (let i = 2; i <= Math.sqrt(diff); i++) {
+    if (diff % i === 0) {
+      count++;
+
+      // Check if both A % i and B % i are equal
+      if (A % i === B % i && i > 1) {
+        count++;
+      }
+
+      // If i and diff/i are distinct factors, check for them
+      if (i !== diff / i && A % (diff / i) === B % (diff / i) && diff / i > 1) {
+        count++;
+      }
+    }
+  }
+
+  return count;
+}
+
+// Example :
+const A = 16;
+const B = 4;
+let result = findM(A, B);
+
+// exclude 1 , so result = result-1;
+result = result - 1;
+console.log(`Number of M: ${result}`);

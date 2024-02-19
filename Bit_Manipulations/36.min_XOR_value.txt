@@ -1,0 +1,52 @@
+Problem Description :
+
+Given an integer array A of N integers, find the pair of integers in the array which have minimum XOR value. Report the minimum XOR value.
+
+
+Problem Constraints :
+2 <= length of the array <= 100000
+0 <= A[i] <= 109
+
+
+Input Format:
+First and only argument of input contains an integer array A.
+
+
+Output Format:
+Return a single integer denoting minimum xor value.
+
+
+Example Input
+Input 1:
+ A = [0, 2, 5, 7]
+Input 2:
+ A = [0, 4, 7, 9]
+
+Example Output
+Output 1:
+ 2
+Output 2:
+ 3
+
+Example Explanation
+Explanation 1:
+ 0 xor 2 = 2
+
+================================================================================================================
+zero is the minimum possible XOR . i.e A^A=0. but if 2 values are not repeated in the array, then ?? to minimise our XOR , we need same bits , but if different bits(difffernt bits results into one ) occurs they should be as right as possible and  thus they should be least significant.
+================================================================================================================
+//logic : The first step is to sort the array. The answer will be the minimum value of X[i] XOR X[i+1] for every i.
+module.exports = {
+    findMinXor: function (A) {
+        // note: must see explaination video
+        A.sort((a, b) => a - b);// increasing order
+        let minimum = Number.MAX_SAFE_INTEGER;
+        for (let i = 0; i < A.length - 1; i++) {
+            let xor = A[i] ^ A[i + 1];
+            minimum = Math.min(minimum, xor)
+        }
+        return minimum;
+    }
+};
+
+========================================================================================

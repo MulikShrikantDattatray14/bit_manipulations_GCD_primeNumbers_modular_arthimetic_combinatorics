@@ -1,0 +1,134 @@
+ques: given N , for every number from [1 N] , get no of factors:
+
+solution : 
+
+let n = 10
+let spf = new Array(n + 1);
+for (let i = 2; i <= n; i++) {
+  spf[i] = i;
+}
+for (let i = 2; i <= Math.sqrt(n); i++) {
+  if (spf[i] == i) {
+    // i is prime
+    for (let j = i * i; j <= n; j += i) {
+      // iterate on multiplies of i
+      if (spf[j] == j) {
+        spf[j] = i;
+      }
+    }
+  }
+}
+
+let count = new Array(n + 1);
+count[1] = 1;
+for (let i = 2; i <= n; i++) {
+  let ans = 1;
+  let x = i;
+  while (x > 1) {
+    let count = 0;
+    let p = spf[x];
+    while (x % p == 0) {
+      x = parseInt(x / p);
+      count++;
+    }
+    ans = ans * (count + 1);
+  }
+  count[i] = ans;
+}
+console.log(count);
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+scaler code:
+================================================================================================================
+Problem Description:
+
+Given an array of integers A, find and return the count of divisors of each element of the array.
+NOTE: The order of the resultant array should be the same as the input array.
+
+================================================================================================================
+//module.exports = {
+//param A : array of integers
+//return a array of integers
+//solve: function (A) {
+
+
+//1.Approach-1:
+
+
+
+
+// let ans = [];
+// for (let j = 0; j < A.length; j++) {
+//     let factors = 0;
+//     for (let i = 1; i * i <= A[j]; i++) {
+//         if ((A[j]) % i == 0) {
+//             if (i == (A[j]) / i) {
+//                 factors++;
+//             } else {
+//                 factors += 2;
+//             }
+//         }
+//         ans[j] = (factors)
+
+
+//     }
+// }
+
+// return(ans);
+
+
+
+
+//     }
+// };
+
+
+
+
+
+// //Approach-2:
+function sieve() {
+
+    let N = 1000005;
+    let spf = new Array(N);     // spf[x] = smallest prime factor of x
+    for (let i = 0; i < N; ++i) {
+        spf[i] = i;
+    }
+    for (let i = 2; i * i < N; ++i) {
+        if (spf[i] == i) {
+            for (let j = i * i; j < N; j += i) {
+                if (spf[j] == j)
+                    spf[j] = i;
+            }
+        }
+    }
+    return spf;
+
+}
+module.exports = {
+    solve: function (A) {
+        let spf = sieve();
+        // Using prime factorization to get the number of divisors for every integer
+        let count = []
+       for (let i = 0; i < A.length; i++) {
+            let ans = 1;
+            let x = A[i];
+            while (x > 1) {
+                let total = 0;
+                let p = spf[x];
+                while (x % p == 0) {
+                    x = x / p;
+                     total++;
+                }
+                ans = ans * (total + 1)
+            }
+            count.push(ans)
+        }
+       return (count)
+    },
+};
+
+
+
+==========================================================================================================================================================================

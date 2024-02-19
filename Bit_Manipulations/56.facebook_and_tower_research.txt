@@ -1,0 +1,5 @@
+Question :-
+
+Given n positive distinct elements, choose arr[i] and arr[j] such that i!=j, if abs(arr[i]-arr[j]) is not present in array , insert abs(arr[i]-arr[j]) in the array. repeat above 2 steps: until no more elements can be added in the array .Find the minimum/smallest element in the final array.
+
+ logic/approach :- min element  : take gcd of the entire array

@@ -1,0 +1,113 @@
+Problem Description :
+
+Given three integers A, B, and C, where A represents n, B represents r, and C represents p and p is a prime number greater than equal to n, find and return the value of nCr % p where nCr % p = (n! / ((n-r)! * r!)) % p.
+
+x! means factorial of x i.e. x! = 1 * 2 * 3... * x.
+
+NOTE: For this problem, we are considering 1 as a prime.
+
+
+
+Problem Constraints : 
+
+1 <= A <= 10^6
+1 <= B <= A
+A <= C <= 10^9+7
+
+
+Input Format
+The first argument given is the integer A ( = n).
+The second argument given is the integer B ( = r).
+The third argument given is the integer C ( = p).
+
+
+
+Output Format
+Return the value of nCr % p.
+
+
+
+Example Input
+Input 1:
+
+ A = 5
+ B = 2
+ C = 13
+Input 2:
+
+ A = 6
+ B = 2
+ C = 13
+
+
+Example Output
+Output 1:
+
+ 10
+Output 2:
+
+ 2
+
+
+Example Explanation
+Explanation 1:
+
+ nCr( n=5 and r=2) = 10.
+ p=13. Therefore, nCr%p = 10.
+
+=====================================================================================
+// factorial function
+function fact(A, C) {
+  let ans = 1;
+  for (let i = 1; i <= A; i++) {
+    // ans *= i;
+    ans = Number((BigInt(ans) * BigInt(i)) % BigInt(C));
+    //ans = ans % (C);    // (MOD-1) is used accoring to Fermat Little theorem.
+  }
+  return ans;
+}
+
+//power function
+
+function power(a, x, m) {
+  if (x === 0) return 1;
+  let half_power = power(a, Math.floor(x / 2), m) % m;
+  half_power = Number((BigInt(half_power) * BigInt(half_power)) % BigInt(m));
+  if (x % 2 === 0) return Number(BigInt(half_power));
+  else return Number((BigInt(a) * BigInt(half_power)) % BigInt(m));
+}
+
+// calculate x
+
+function calcx(n, r, p) {
+  let ans = fact(n - r, p);
+  return ans;
+}
+
+//calculate y
+
+function calcy(r, p) {
+  let ans = fact(r, p);
+  return ans;
+}
+
+let A = 5;
+let B = 2;
+let C = 13;
+let ans = solve(A, B, C);
+console.log(typeof ans);
+
+function solve(A, B, C) {
+  // let finalans = ((fact(A, C) % C) * (power(calcx(A, B, C), C - 2, C) % C) * (power(calcy(B, C), C - 2, C) % C)) % C;
+  // find and return the value of nCr % p where nCr % p = (n! / ((n-r)! * r!)) % p.
+  if (C == 1) return 0;
+  let first = Number(
+    (BigInt(fact(A, C)) * BigInt(power(calcx(A, B, C), C - 2, C))) % BigInt(C)
+  );
+  let finalans = Number(
+    (BigInt(first) * BigInt(power(calcy(B, C), C - 2, C) % C)) % BigInt(C)
+  );
+  return finalans;
+}
+
+======================================================================================

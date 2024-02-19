@@ -1,0 +1,6 @@
+question - given N array elements , find the gcd of factorial of all the given elements?
+
+
+ eg : let A=[4,3,8,6]
+
+  logic : 1. iterate and get min , 2. for min , get its factorial.

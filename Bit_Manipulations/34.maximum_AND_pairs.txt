@@ -1,0 +1,83 @@
+Problem Description :-
+
+Given an array A. For every pair of indices i and j (i != j), find the maximum A[i] & A[j].
+
+Problem Constraints :
+
+1 <= len(A) <= 10^5
+1 <= A[i] <= 10^9
+
+Input Format:
+The first argument is an integer array A.
+
+Output Format:
+Return a single integer that is the maximum A[i] & A[j].
+
+
+Example Input:
+Input 1:-
+A = [53, 39, 88]
+Input 2:-
+A = [38, 44, 84, 12] 
+
+
+Example Output
+Output 1:-
+37
+Output 2:-
+36
+
+
+Example Explanation :-
+
+Explanation 1:-
+53 & 39 = 37
+39 & 88 = 0
+53 & 88 = 16
+Maximum among all these pairs is 37
+Explanation 2:-
+Maximum bitwise and among all pairs is (38, 44) = 36
+
+================================================================================================================================================================================================================================
+
+//Input 1:-
+A1 = [53, 39, 88]; //37
+//Input 2:-
+A2 = [38, 44, 84, 12]; //36
+
+let ans1 = maxi(A1);
+let ans2 = maxi(A2);
+console.log(ans1);
+console.log(ans2);
+
+function maxi(A) {
+  let n = A.length;
+  let ans = 0;
+  // start looking for the set bits from last.and look for atleast 2 elements have set bit , else mark that position as unset in the answer.
+  for (let i = 31; i >= 0; i--) {
+    let count = 0;
+    // count  the set bits
+    for (let j = 0; j < n; j++) {
+      if (((Number(A[j]) >> i) & 1) === 1) {
+        count++;
+      }
+    }
+    if (count >= 2) {
+      // we need atleast 2 elements with set bit (bcz we need 2 set bits to make a AND true ) ,for our answer to have set at that position in the answer.if the count of set bits at that position is less than 2 than mark that position with the unset bit.
+      // 1&1==1
+      // mark the positon in the ans with the set .
+      ans = ans + (1 << i);
+      for (let j = 0; j < n; j++) {
+        // for deleting the number with bit at that position as unset
+        if (((Number(A[j]) >> i) & 1) === 0) {
+          A[j] = 0;
+        }
+      }
+    }
+  }
+  return ans;
+}
+
+
+================================================================================================================================================================================================================================================================================================================================================
+

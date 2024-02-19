@@ -1,0 +1,27 @@
+ques: given an array , return true if there exists a subsequence where gcd is 1.
+
+logic:
+
+if there exists a subsequence , whose gcd=1 , then the gcd of complete array is 1.
+
+approach : if the gcd of the entire array is 1, then there exits a subsequence, Because gcd(A,A+1) is always 1.and thus now gcd of any number with 1 is always 1. so if the gcd of entire array is returned as 1, then there exits a subsequence. 
+
+//================================================================================================================================================================================================================================
+
+
+function gcd(A, B) {
+  if (A === 0) return B;
+  if (B === 0) return A;
+  return gcd(B % A, A);
+}
+
+let arr = [8, 16, 17];
+let ans = arr[0];
+for (let i = 1; i < arr.length; i++) {
+  ans = gcd(ans, arr[i]);
+}
+if(ans==1) console.log("There exits a subsequence");
+else console.log("There doesn't exits a subsequence");
+
+
+//================================================================================================================================================================================================================================

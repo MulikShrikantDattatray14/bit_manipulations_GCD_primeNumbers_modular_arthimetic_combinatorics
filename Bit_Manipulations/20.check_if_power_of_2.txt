@@ -1,0 +1,1 @@
+//same as question-19 , where if count is 1 , then it is power of 2.

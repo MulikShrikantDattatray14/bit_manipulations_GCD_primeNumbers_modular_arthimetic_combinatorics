@@ -1,0 +1,39 @@
+Problem Description :
+
+Given a decimal number A and a base B, convert it into its equivalent number in base B.
+
+Example Input :
+
+Input 1:
+A = 4
+B = 3
+Input 2:
+A = 4
+B = 2 
+
+
+Example Output
+Output 1:
+11
+Output 2:
+100
+
+
+Example Explanation
+Explanation 1:
+Decimal number 4 in base 3 is 11.
+Explanation 2:
+Decimal number 4 in base 2 is 100. 
+
+================================================================================
+
+A = 4;
+B = 2;
+if (A == 0) console.log(0);
+let remainder = [];
+while (A > 1) {
+  remainder.push(A % B);
+  A = parseInt(A / B);
+}
+if (A == 1) remainder.push(A);
+console.log(remainder.reverse().join(""));

@@ -1,0 +1,104 @@
+Problem Description:
+
+Given 2 non-negative integers A and B, find gcd(A, B)
+GCD of 2 integers A and B is defined as the greatest integer 'g' such that 'g' is a divisor of both A and B. Both A and B fit in a 32 bit signed integer.
+
+Note: DO NOT USE LIBRARY FUNCTIONS.
+
+
+Problem Constraints
+0 <= A, B <= 109
+
+
+Input Format:
+First argument is an integer A.
+Second argument is an integer B.
+
+
+
+Output Format:
+Return an integer denoting the gcd(A, B).
+
+
+
+Example Input
+Input 1:
+
+A = 4
+B = 6
+Input 2:
+
+A = 6
+B = 7
+
+
+Example Output
+Output 1:
+
+ 2
+Output 2:
+
+ 1
+
+
+Example Explanation
+Explanation 1:
+
+ 2 divides both 4 and 6
+Explanation 2:
+
+ 1 divides both 6 and 7
+
+================================================================================================================================================================================
+
+//idea-1 :
+function gcd(a, b) {
+  if (b == 0) return a;
+  if (a == 0) return b;
+  return gcd(b, a % b);
+}
+
+// Euclidean algorithm : 
+
+The provided function gcd(a, b) calculates the Greatest Common Divisor (GCD) of two integers a and b using the Euclidean algorithm. Here's a breakdown of how it works:
+
+The function takes two parameters, a and b, representing the two integers for which we want to find the GCD.
+
+The base cases are checked:
+
+If b is 0, it means that a is the GCD, so the function returns a.
+If a is 0, it means that b is the GCD, so the function returns b.
+If neither of the base cases is met, the function recursively calls itself with the arguments b and a % b. This is the key step in the Euclidean algorithm, where a % b represents the remainder when a is divided by b.
+
+The recursion continues until one of the base cases is met, and the GCD is gradually computed by finding the remainder in each step.
+
+Here's a more detailed breakdown of the Euclidean algorithm:-
+
+Given two integers a and b (where a >= b), the algorithm repeatedly replaces a with b and b with a % b until b becomes 0.
+The last non-zero remainder is the GCD of the original a and b.
+In summary, the gcd function efficiently computes the GCD using recursion and the Euclidean algorithm.
+
+
+
+
+
+========================================================================================
+//idea-2 :
+let A = a;
+let B = b;
+if (A == 0) return B;
+if (B == 0) return A;
+
+let ans = 0;
+let mini = Math.min(A, B);
+let max = Math.max(A, B);
+
+for (let i = mini; i >= 1; i--) {
+  if (mini % i == 0 && max % i == 0) {
+    ans = i;
+    break;
+  }
+}
+return ans;
+
+================================================================================================================================================================================

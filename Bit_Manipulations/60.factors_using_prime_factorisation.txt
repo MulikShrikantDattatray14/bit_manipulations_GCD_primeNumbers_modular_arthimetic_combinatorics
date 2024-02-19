@@ -1,0 +1,32 @@
+//ques: count number of factors using prime factorisation.
+
+//solution :
+
+let n = 360; //The factors of 360 are 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 30, 36, 40, 45, 60, 72, 90, 120, 180, 360. thus ans is 24.
+let spf = new Array(n + 1);
+for (let i = 2; i <= n; i++) {
+  spf[i] = i;
+}
+for (let i = 2; i <= Math.sqrt(n); i++) {
+  if (spf[i] == i) {
+    // i is prime
+    for (let j = i * i; j <= n; j += i) {
+      // iterate on multiplies of i
+      if (spf[j] == j) {
+        spf[j] = i;
+      }
+    }
+  }
+}
+
+let ans = 1;
+while (n > 1) {
+  let count = 0;
+  let p = spf[n];
+  while (n % p == 0) {
+    n = parseInt(n / p);
+    count++;
+  }
+  ans = ans * (count + 1);
+}
+console.log(ans);

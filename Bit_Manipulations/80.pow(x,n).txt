@@ -1,0 +1,75 @@
+Leetcode : 50. Pow(x, n) : https://leetcode.com/problems/powx-n/description/
+
+
+Implement pow(x, n), which calculates x raised to the power n (i.e., x^n).
+
+
+Example 1:
+
+Input: x = 2.00000, n = 10
+Output: 1024.00000
+Example 2:
+
+Input: x = 2.10000, n = 3
+Output: 9.26100
+Example 3:
+
+Input: x = 2.00000, n = -2
+Output: 0.25000
+Explanation: 2-2 = 1/22 = 1/4 = 0.25
+ 
+
+Constraints:
+
+-100.0 < x < 100.0
+-231 <= n <= 231-1
+n is an integer.
+Either x is not zero or n > 0.
+-104 <= xn <= 104
+
+
+================================================================================
+
+
+function myPow(x, n) {
+  if (x == 0) return 0;
+  if (n === 0) {
+    return 1;
+  }
+
+  if (n < 0) {
+    // if power is negative
+    x = 1 / x;
+    n = -n;
+  }
+  // lets x= 2 and n =10;
+  if (n % 2 === 0) {
+    // if power is even , make it half and multiply the x with itself
+    //eg : 2^10 = 4^5
+    const temp = myPow(x, n / 2);
+    return temp * temp;
+  } else {
+    // 4^5 = 4*(4^4) = 4 * (16^2)= 4*(256^1)= 4*256 = 1024.
+    const temp = myPow(x, (n - 1) / 2);
+    return x * temp * temp;
+  }
+}
+let x = 2.0;
+let n = 10;
+let ans = myPow(x, n);
+console.log(ans);
+
+let x1 = 2.1;
+let n1 = 3;
+//Output: 9.26100
+let ans1 = myPow(x1, n1);
+console.log(ans1);
+
+let x2 = 2.0;
+n2 = -2;
+//Output: 0.25000
+let ans2 = myPow(x2, n2);
+console.log(ans2);
+
+
+//======================================================================================

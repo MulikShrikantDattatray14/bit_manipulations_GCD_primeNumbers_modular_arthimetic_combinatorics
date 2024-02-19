@@ -1,0 +1,25 @@
+Problem Description :-
+You are given two integers A and B.
+Set the A-th bit and B-th bit in 0, and return output in decimal Number System.
+
+=================================================================================
+ solve: function (A, B) {
+        return (1 << A) | (1 << B)
+
+        // WAY-2
+         //if( A !=B) return((2**A)+(2**B))
+       // else return 2**A
+    }
+
+================================================================================
+
+
+
+
+
+
+let n=1;// number
+let a=2;//ath bit 
+let b=3;//bth bit
+let ans = (n<<a)|(n<<b)
+console.log(ans)

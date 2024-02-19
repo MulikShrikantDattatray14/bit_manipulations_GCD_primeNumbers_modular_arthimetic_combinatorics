@@ -1,0 +1,107 @@
+// similiar question : try submitting it later - https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/description/
+
+
+//similiar problem : leetcode : 1010. Pairs of Songs With Total Durations Divisible by 60- https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/description/
+------------------------------------------------------------------------------------------------
+
+Problem Description :-
+
+Given an array of integers A and an integer B, find and return the number of pairs in A whose sum is divisible by B.
+Since the answer may be large, return the answer modulo (10^9 + 7).
+Note: Ensure to handle integer overflow when performing the calculations.
+
+
+Problem Constraints :-
+1 <= length of the array <= 100000
+1 <= A[i] <= 109
+1 <= B <= 106
+
+Input Format :
+The first argument given is the integer array A.
+The second argument given is the integer B.
+
+Output Format :
+Return the total number of pairs for which the sum is divisible by B modulo (109 + 7).
+
+Example Input :
+Input 1:
+ A = [1, 2, 3, 4, 5]
+ B = 2
+Input 2:
+ A = [5, 17, 100, 11]
+ B = 28
+
+
+Example Output
+Output 1:
+
+ 4
+Output 2:
+
+ 1
+
+
+Example Explanation
+Explanation 1:
+ All pairs which are divisible by 2 are (1,3), (1,5), (2,4), (3,5). 
+ So total 4 pairs.
+Explanation 2:
+ There is only one pair which is divisible by 28 is (17, 11)
+
+
+ ==============================================================================================================================================================================
+let A = [1, 2, 3, 4, 5, 10, 6, 7, 8, 9];
+let B = 5;
+
+// return the number of pairs in A whose sum is divisible by B.
+let ans = solve(A, B);
+console.log(ans);
+
+function solve(A, B) {
+  let n = A.length;
+  let ans;
+  //step-1 - create a array
+  let arr = []; // of size M.
+  for (let i = 0; i < B; i++) {
+    arr[i] = 0;
+  }
+  for (let i = 0; i < n; i++) {
+    arr[A[i] % B]++;
+  }
+  console.log(arr);
+  // when i and j are zero and also when i ==j
+  ans = (arr[0] * (arr[0] - 1)) / 2;
+  let a = 1;
+  let b = B - 1;
+  while (a < b) {
+    // try out all the pairs( 2 elements with remainder 1 and and 2 elements with the remainder B-1, gives out 4 possible pairs )
+    ans = ans + arr[a] * arr[b];
+    a++;
+    b--;
+  }
+  if (a == b) {
+    ans = ans + (arr[a] * (arr[a] - 1)) / 2;
+  }
+  return ans % 1000000007;
+}
+
+//========================================================================================================
+//note :-
+
+//The two formulas you provided are similar but have a difference in the way they generate the sequence of numbers.
+
+//The first formula is (x * (x + 1)) / 2. This formula represents the sum of the first x natural numbers (1, 2, 3, ..., x). It is a formula for the triangular numbers.
+
+//The second formula is (x * (x - 1)) / 2. This formula represents the sum of the first x-1 natural numbers (1, 2, 3, ..., x-1). It is also related to triangular numbers but excludes the last term x from the sum.
+
+//In summary:
+
+//The first formula sums the numbers from 1 to x (inclusive).
+//The second formula sums the numbers from 1 to x-1 (inclusive).
+//If you plug in a specific value for x in both formulas, you'll see the difference. For example, if x = 5:
+
+//The first formula gives (5 * (5 + 1)) / 2 = 5 * 6 / 2 = 15.
+//The second formula gives (5 * (5 - 1)) / 2 = 5 * 4 / 2 = 10.
+
+
+========================================================================================

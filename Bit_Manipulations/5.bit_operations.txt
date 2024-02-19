@@ -1,0 +1,5 @@
+If a&1 = 1, then a is?
+
+If a&1 = 1 siginifies that a must be odd
+
+ reason : oth bit should be 1 and this 1 when did & with 1 , return 1. Odd number will have have 0th bit as 1, and even bit will have 0th bit as zero(as it gets divided by 2 and remainder is 0) 

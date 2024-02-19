@@ -1,0 +1,64 @@
+Problem Description :
+
+Given an integer A. Find the list of all prime numbers in the range [1, A].
+
+Problem Constraints : 
+1 <= A <= 106
+Input Format:
+Only argument A is an integer.
+
+Output Format:
+Return a sorted array of prime number in the range [1, A].
+
+Example Input:
+Input 1:
+A = 7
+Input 2:
+A = 12
+
+
+Example Output:
+Output 1:
+[2, 3, 5, 7]
+Output 2:
+[2, 3, 5, 7, 11]
+
+
+Example Explanation
+For Input 1:
+The prime numbers from 1 to 7 are 2, 3, 5 and 7.
+For Input 2:
+The prime numbers from 1 to 12 are 2, 3, 5, 7 and 11.
+
+================================================================================================================================================================================
+// multiply of the entire output array results into the input . Example when A=35 ,ans is [5,7]
+let A = 35;
+let n = A;
+let start = [];
+for (let i = 0; i <= n; i++) {
+  start[i] = true;
+}
+
+// we know 1 is not prime.
+start[0] = start[1] = false;
+// if a numer is prime ,it wont have a single factor in range [2 , Math.sqrt(N)]
+for (let i = 2; i * i <= n; i++) {
+  if (start[i] == true) {
+    // if start[i]  is a prime or is a factor of some numbers , then its multiples cannot be prime.
+    for (let j = i * i; j <= n; j = j + i) {
+      start[j] = false;
+    }
+  }
+}
+
+let ans = [];
+for (let k = 0; k <= n; k++) {
+  if (start[k] == true) {
+    ans.push(k);
+  }
+}
+console.log(ans);
+
+
+
+================================================================================================================================================================================

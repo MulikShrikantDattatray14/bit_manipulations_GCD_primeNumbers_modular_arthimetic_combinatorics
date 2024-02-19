@@ -1,0 +1,88 @@
+Ans : prime numbers are infinite.
+
+explain : 
+
+The question of whether prime numbers are infinite or finite has been addressed in mathematics, and the answer is that there are infinitely many prime numbers. This statement was first proven by the ancient Greek mathematician Euclid over two thousand years ago.
+
+Euclid's proof is often referred to as the "Euclidean proof of the infinitude of primes." The basic idea is to assume that there is a finite number of prime numbers and then use that assumption to derive a contradiction. Euclid's proof is elegant and has stood the test of time.
+
+In summary, the set of prime numbers is infinite, and new prime numbers can be found as we continue counting towards infinity.
+
+
+Certainly! Let's go through Euclid's proof using a more informal explanation without mathematical expressions.
+
+Euclid's Informal Proof of the Infinitude of Primes:
+
+Assumption: Let's imagine, just for a moment, that we've made a list of all prime numbers. This means we have a finite list of primes, like 
+2
+,
+3
+,
+5
+,
+7
+,
+…
+2,3,5,7,….
+
+Create a New Number: Now, let's create a new number 
+�
+N. We take all the primes from our list and multiply them together. To this product, we add 1. So, 
+�
+=
+2
+×
+3
+×
+5
+×
+7
+×
+…
++
+1
+N=2×3×5×7×…+1.
+
+Properties of N:
+
+�
+N is not divisible by any of the primes on our list because when we divide 
+�
+N by any of them, we get a remainder of 1.
+This means 
+�
+N is either a prime number itself or has prime factors that are not in our original list.
+Contradiction:
+
+If 
+�
+N is a prime number, then we found a prime not in our original list, contradicting the assumption that our list included all primes.
+If 
+�
+N has new prime factors, it means there are primes beyond our original list, again contradicting our assumption.
+Conclusion:
+
+Since our assumption led to a contradiction, we must conclude that our assumption was incorrect.
+Therefore, our original assumption that there's a finite list of primes must be false.
+Implication:
+
+There are infinitely many primes; they go on forever and can't be exhaustively listed.
+Example:
+
+Imagine we only had two primes, 2 and 3. Now create 
+�
+N:
+�
+=
+(
+2
+×
+3
+)
++
+1
+=
+7
+N=(2×3)+1=7
+
+In this case, 7 is a prime number not in our original list, leading to a contradiction and showing that our assumption of having a finite list of primes is not valid.

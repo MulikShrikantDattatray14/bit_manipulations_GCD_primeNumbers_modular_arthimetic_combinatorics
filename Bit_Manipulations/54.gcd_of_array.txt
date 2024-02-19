@@ -1,0 +1,16 @@
+question :- given N array elements , calculate gcd of array.
+
+solution :- 
+
+function gcd(A, B) {
+  if (A === 0) return B;
+  if (B === 0) return A;
+  return gcd(B % A, A);
+}
+
+let arr = [ 6, 8];
+let ans = arr[0];
+for (let i = 1; i < arr.length; i++) {
+  ans = gcd(ans, arr[i]);
+}
+console.log(ans);

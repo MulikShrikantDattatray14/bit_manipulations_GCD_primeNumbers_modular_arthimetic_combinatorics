@@ -1,0 +1,31 @@
+Problem Description :-
+----------------------
+
+Given an array B of length A with elements 1 or 0. Find the number of subarrays such that the bitwise OR of all the elements present in the subarray is 1.
+Note : The answer can be large. So, return type must be long.
+
+================================================================================================================================================================================================================================
+
+A = 3;
+B = [0, 0, 0];
+
+// solution video best explained
+//logic : total subarrays - subarray sum equals to zero.
+let finalcount = 0;
+let zerocount = 0;
+let sum = parseInt((A * (A + 1)) / 2);
+
+for (let i = 0; i < A; i++) {
+  if (B[i] == 0) {
+    zerocount++;
+  } else {
+    finalcount = finalcount + (zerocount * (zerocount + 1)) / 2;
+    zerocount = 0;
+  }
+}
+//After the loop, add the count for any remaining consecutive zeros:
+finalcount = finalcount +(zerocount * (zerocount + 1)) / 2;
+console.log(sum - finalcount);
+
+
+    ==========================================================================================================================================================

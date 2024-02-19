@@ -1,0 +1,10 @@
+Given a=10, what will be the 0-th bit in a|1 ?
+
+The operation a|1 sets the 0-th bit of a.
+
+note:-
+
+// 0th bit in the even number is always - zero .
+// 0th bit in the odd number is always - one .
+1.for any number a => for operation a|1 , its 0th bit will always be 1.
+2.for any number a => for operation a&1 , its 0th bit will always be 0th bit of the number itself.

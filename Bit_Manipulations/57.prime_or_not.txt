@@ -1,0 +1,13 @@
+Given input  number(N). check if the N is prime  or not .
+
+//A prime number is a natural number greater than 1 that cannot be formed by multiplying two smaller natural numbers. It has only two distinct positive divisors: 1 and itself.
+
+if(N==1) return false;
+for(let i=2;i<=Math.sqrt(N);i++){
+    if(N%2==0)return false
+}
+return true;
+
+Logic :-
+
+if a  number is a prime number , it wont have a single factor in range[2,Math.sqrt(N)]

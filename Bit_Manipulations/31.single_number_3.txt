@@ -1,0 +1,119 @@
+Problem Description :- 
+
+Given an array of positive integers A, two integers appear only once, and all the other integers appear twice.
+Find the two integers that appear only once.
+
+Note: Return the two numbers in ascending order.
+
+
+Problem Constraints
+2 <= |A| <= 100000
+1 <= A[i] <= 109
+
+
+
+Input Format :
+The first argument is an array of integers of size N.
+
+Output Format:
+Return an array of two integers that appear only once.
+
+
+
+Example Input:
+
+Input 1:
+A = [1, 2, 3, 1, 2, 4]
+Input 2:
+A = [1, 2]
+
+Example Output :
+Output 1:
+[3, 4]
+Output 2:
+[1, 2]
+
+
+Example Explanation :
+Explanation 1:
+3 and 4 appear only once.
+Explanation 2:
+1 and 2 appear only once.
+
+==================================================================================================================================================================
+//Input 1:
+A1 = [1, 2, 3, 1, 2, 4];
+//Input 2:
+A2 = [1, 2];
+
+let ans1 = solve(A1);
+let ans2 = solve(A2);
+console.log(ans1); ///[3, 4]
+console.log(ans2); //[1, 2]
+function solve(A) {
+  //idea-1:
+
+  let n = A.length;
+  //step-1- find XOR for all, so final value will be a combined result of 2 values
+  let val = 0;
+  for (let i = 0; i < n; i++) {
+    val = val ^ A[i];
+  }
+
+  //step-2- find the 1st set bit position in the value.
+  let position = 0;
+  for (let i = 0; i < 32; i++) {
+    if (((val >> i) & 1) == 1) {
+      position = i;
+      break;
+    }
+  }
+
+  //step-3 : using position as the reference , break the array into set and unset.
+  let set = 0;
+  let unset = 0;
+  for (let i = 0; i < n; i++) {
+    if (((A[i] >> position) & 1) == 1) {
+      set = set ^ A[i];
+    } else {
+      unset = unset ^ A[i];
+    }
+  }
+
+  if (set > unset) [set, unset] = [unset, set];
+  return [set, unset];
+}
+
+
+==================================================================================================================================================================
+
+/// note : the above question can also  be asked in below format : 
+
+Problem statement :
+
+You are given an array 'arr' of size 'n'.
+It contains an even number of occurrences for all numbers except two numbers.
+Find those two numbers which have odd occurrences and return in decreasing order.
+
+Example:
+For 'arr' = {2, 4, 1, 3, 2, 4} , 'n' = 6.
+Answer is {3, 1}.
+Here, numbers 1, 3 have occurrence 1 i.e. odd and numbers 2, 4 have occurrence 2 i.e. even.
+Detailed explanation ( Input/output format, Notes, Images )
+Sample Input 1:
+4
+3 3 1 2 
+Sample Output 1:
+2 1
+Explanation of sample output 1:
+'n' = 4, ‘arr’ = {3, 3, 1, 2}
+Answer is {2, 1}
+Here, numbers 1, 2 have occurrence 1 i.e. odd and number 3 have occurrence 2 i.e. even.
+Sample Input 2:-
+2
+1 2
+Sample Output 2:-
+2 1
+
+
+//================================================================================================================================================================================================================================

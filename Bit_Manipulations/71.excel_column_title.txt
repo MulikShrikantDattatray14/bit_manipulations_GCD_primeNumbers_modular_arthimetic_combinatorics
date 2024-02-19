@@ -1,0 +1,83 @@
+Problem Description :
+
+Given a positive integer A, return its corresponding column title as it appears in an Excel sheet.
+
+For example:
+
+    1 -> A
+    2 -> B
+    3 -> C
+    ...
+    26 -> Z
+    27 -> AA
+    28 -> AB 
+
+
+Problem Constraints :
+
+1 <= A <= 109
+
+
+
+Input Format :
+First and only argument of input contains single integer A
+
+Output Format :
+Return a string denoting the corresponding title.
+
+
+
+Example Input :
+Input 1:
+A = 3
+Input 2:
+A = 27
+
+
+Example Outputm:
+Output 1:
+"C"
+Output 2:
+"AA"
+
+
+Example Explanation :
+Explanation 1:
+3 corrseponds to C.
+
+Explanation 2:
+
+    1 -> A,
+    2 -> B,
+    3 -> C,
+    ...
+    26 -> Z,
+    27 -> AA,
+    28 -> AB 
+
+===============================================================================================================================================================================================================================================================
+let A = 943566;
+
+//logic : use base 26 approach , where A represents 0 and Z represents 25.
+// so range lies from [ 0 ,25]
+// so if the input given is A, we take input as A-1 ( as we have taken 0 based indexing and A represents 0) and this needs to be followed for every iteration.
+let array = new Array(26);
+for (let i = 0; i < 26; i++) {
+  // fill the array with the alphabets
+  array[i] = String.fromCharCode("A".charCodeAt(0) + i);
+}
+console.log(array);
+
+let num = 26;
+let index; // stores remainder
+let res = "";
+
+while (A > 0) {
+  // always subtract one from the number as it is a 0 based indexing.
+  index = (A - 1 + num) % num; // gvies remainder
+  A = Math.floor((A - 1) / num); // updates A
+  res = array[index] + res; // extracting  remainder value from the array
+}
+console.log(res);
+
+==========================================================================================================================================================================

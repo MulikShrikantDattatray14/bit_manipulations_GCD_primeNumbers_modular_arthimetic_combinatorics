@@ -1,0 +1,112 @@
+Problem Description : 
+You are given an array of integers A of size N.
+
+The value of a subarray is defined as BITWISE OR of all elements in it.
+
+Return the sum of value of all subarrays of A % 109 + 7.
+
+
+
+Problem Constraints
+1 <= N <= 105
+
+1 <= A[i] <= 108
+
+
+
+Input Format
+The first argument given is the integer array A.
+
+
+
+Output Format
+Return the sum of Value of all subarrays of A % 109 + 7.
+
+
+
+Example Input
+Input 1:
+
+ A = [1, 2, 3, 4, 5]
+Input 2:
+
+ A = [7, 8, 9, 10]
+
+
+Example Output
+Output 1:
+
+ 71
+Output 2:
+
+ 110
+
+
+Example Explanation
+Explanation 1:
+
+ Value([1]) = 1
+ Value([1, 2]) = 3
+ Value([1, 2, 3]) = 3
+ Value([1, 2, 3, 4]) = 7
+ Value([1, 2, 3, 4, 5]) = 7
+ Value([2]) = 2
+ Value([2, 3]) = 3
+ Value([2, 3, 4]) = 7
+ Value([2, 3, 4, 5]) = 7
+ Value([3]) = 3
+ Value([3, 4]) = 7
+ Value([3, 4, 5]) = 7
+ Value([4]) = 4
+ Value([4, 5]) = 5
+ Value([5]) = 5
+ Sum of all these values = 71
+Explanation 2:
+
+ Sum of value of all subarray is 110.
+
+ ==================================================================================
+
+ module.exports = {
+    //param A : array of integers
+    //return an integer
+    solve: function (A) {
+        const N = A.length;
+        const mod = 10 ** 9 + 7;
+
+        // Function to calculate the count of subarrays of size x
+        const getSubarrayCount = (x) => (x * (x + 1)) / 2;
+
+        let sum = 0;
+
+        // Iterate through each bit position
+        for (let bit = 0; bit < 32; bit++) {
+            let unsetBitCount = 0;
+            let totalUnsetBitSubarray = 0;
+
+            // Iterate through each element of the array
+            for (let i = 0; i < N; i++) {
+                // Check if the bit at position 'bit' is unset (0)
+                if ((A[i] >> bit) & 1 === 1) {
+                    totalUnsetBitSubarray += getSubarrayCount(unsetBitCount);
+                    unsetBitCount = 0;
+                } else {
+                    unsetBitCount++;
+                }
+            }
+
+            // Calculate the count of subarrays with set bit at the current position
+            totalUnsetBitSubarray += getSubarrayCount(unsetBitCount);
+            const setBitSubarrCount = getSubarrayCount(N) - totalUnsetBitSubarray;
+
+            // Add the contribution of subarrays with set bit at the current position to the sum
+            sum += (setBitSubarrCount * Math.pow(2, bit)) % mod;
+        }
+
+        // Return the final result after taking modulo 'mod'
+        return sum % mod;
+
+    }
+};
+
+================================================================================================================================================================================

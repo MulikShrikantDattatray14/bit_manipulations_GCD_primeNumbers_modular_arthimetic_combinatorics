@@ -1,0 +1,100 @@
+Problem Description :
+
+Divide two integers without using multiplication, division and mod operator.
+Return the floor of the result of the division.
+Also, consider if there can be overflow cases i.e output is greater than INT_MAX, return INT_MAX.
+
+
+NOTE: INT_MAX = 2^31 - 1
+Problem Constraints :
+
+-2^31 <= A, B <= 2^31-1
+B != 0
+
+
+
+Input Format :
+
+The first argument is an integer A denoting the dividend.
+The second argument is an integer B denoting the divisor.
+
+Output Format :
+Return an integer denoting the floor value of the division.
+
+
+Example Input :
+
+Input 1:
+ A = 5
+ B = 2
+
+Input 2:
+ A = 7
+ B = 1
+
+
+Example Output :
+Output 1:
+ 2
+Output 2:
+ 7
+
+Example Explanation :
+Explanation 1:
+ floor(5/2) = 2
+
+ ==============================================================================================================================================================================================================================
+//Input 1:
+
+A1 = 5;
+B1 = 2;
+
+let ans1 = solve(A1, B1);
+console.log(ans1); //2
+//Input 2:
+
+A2 =121;
+B2 = 4;
+let ans2 = solve(A2, B2);
+console.log(ans2); //2
+
+function solve(dividend, divisor) {
+////https://www.youtube.com/watch?v=yYgNyxMBrak
+
+  const INT_MAX = Number.MAX_SAFE_INTEGER;
+  const INT_MIN = Number.MIN_SAFE_INTEGER;
+
+  if (dividend === INT_MIN && divisor === -1) {
+    //minus and minus gives positive
+    return INT_MAX;
+  }
+
+  if (dividend === INT_MIN && divisor === 1) {
+    return INT_MIN;
+  }
+
+  let absDividend = Math.abs(dividend);
+  let absDivisor = Math.abs(divisor);
+
+  let res = 0;
+  while (absDivisor <= absDividend) {
+    let sum = absDivisor;
+    let count = 1;
+    while (sum <= absDividend - sum) {
+      sum += sum;
+      count += count;
+    }
+    res = res + count;
+    absDividend = absDividend - sum;
+  }
+
+  if ((dividend < 0 && divisor > 0) || (dividend > 0 && divisor < 0)) {
+    return -res;
+  }
+  if (res > 2 ** 31 - 1) return 2 ** 31 - 1;
+  return res;
+}
+
+
+
+================================================================================================================================================================================================================================

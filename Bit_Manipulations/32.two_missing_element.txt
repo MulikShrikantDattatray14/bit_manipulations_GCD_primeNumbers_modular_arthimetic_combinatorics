@@ -1,0 +1,5 @@
+question : given N array elements , array contain all elements from [1,N+2] except 2 elements , find 2 missing elements.
+
+brute force : use hashmap
+
+optimal solution : insert [1,N+2] into the given array , and how here every element repeats twice except 2 unique elements. and use the same logic and code as the question-31.

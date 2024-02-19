@@ -1,0 +1,59 @@
+Problem Description : 
+
+Given an integer A, find and return the Ath magic number.
+
+A magic number is defined as a number that can be expressed as a power of 5 or a sum of unique powers of 5.
+
+First few magic numbers are 5, 25, 30(5 + 25), 125, 130(125 + 5), ….v
+
+==================================================================================================================================================================
+
+Example Input
+Example Input 1:
+
+ A = 3
+Example Input 2:
+
+ A = 10
+
+
+Example Output
+Example Output 1:
+
+ 30
+Example Output 2:
+
+ 650
+
+
+Example Explanation
+Explanation 1:
+
+ Magic Numbers in increasing order are [5, 25, 30, 125, 130, ...]
+ 3rd element in this is 30
+Explanation 2:
+
+ In the sequence shown in explanation 1, 10th element will be 650.
+
+ ================================================================================================================================================================
+
+let A = 10;
+for (let i = 1; i <= 10; i++) {
+  console.log(`${i} th magic number : ` + magic(i));
+}
+function magic(A) {
+  let ans = 0;
+  let power = 5;
+  while (A > 0) {
+    // try matching with the bits of the number given .
+    // wherever set bit is present, use that position+1 to power of 5 
+    let rem = A % 2;
+    A = parseInt(A / 2);
+    ans += rem * power;
+    power *= 5;// as we move from left to right , power of 5 keeps increasing .
+  }
+  return ans;
+}
+
+
+==================================================================================================================================================================

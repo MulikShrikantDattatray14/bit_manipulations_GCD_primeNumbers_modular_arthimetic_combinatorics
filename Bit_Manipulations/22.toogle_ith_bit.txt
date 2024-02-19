@@ -1,0 +1,31 @@
+Problem Description : 
+
+You are given two integers A and B.
+If B-th bit in A is set, make it unset
+If B-th bit in A is unset, make it set
+Return the updated A value
+
+================================================================================
+
+module.exports = {
+    //param A : integer
+    //param B : integer
+    //return an integer
+    solve: function (A, B) {
+        let validate = ((A >> B) & 1) == 1;
+      
+        if (!validate) {
+           return (A + (1 << B));
+        }else{
+            return (A - (1 << B));
+        }
+
+
+//APPROACH-2:
+        let num = 1 << B;
+        return A ^ num;
+        
+    }
+};
+
+=================================================================================

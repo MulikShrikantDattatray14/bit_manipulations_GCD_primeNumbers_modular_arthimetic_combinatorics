@@ -1,0 +1,56 @@
+Problem Description :
+
+Write a function that takes an integer and returns the number of 1 bits present in its binary representation.
+
+===============================================================================================================
+
+approach-1 : // check every bit through iteration
+
+let n = 30;
+let bit = n.toString(2);
+console.log(bit);
+let count = 0;
+for (let i = 0; i < 32; i++) {
+  if (((n >> i) & 1) == 1) {
+    console.log("add one to ans");
+    count++;
+  }
+}
+
+console.log(count);
+
+
+==================================================================================================================================================================
+
+Approach-2 :-check 0th bit is set or not.
+
+let n=3;
+let count=0;
+while(n>0){
+    if(n&1==1){
+        count++;
+    }
+    n=n>>1;
+}
+console.log(count)
+
+
+//========================================================================================
+// // approach-3 :
+function isPowerOfTwo(n) {
+  let ans = n.toString(2);
+  ans = Array.from(ans);
+  let count = 0;
+  for (let i = 0; i < ans.length; i++) {
+    if (ans[i] == 1) count++;
+  }
+  return count;
+}
+
+let count = 0;
+let n = 5;
+for (let i = 0; i <= n; i++) {
+  let final = isPowerOfTwo(i);
+  count += final;
+}
+console.log(count);

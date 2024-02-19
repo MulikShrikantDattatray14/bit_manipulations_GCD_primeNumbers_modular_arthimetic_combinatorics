@@ -1,0 +1,41 @@
+Problem Description :
+
+Given two integers A and B. Find the minimum value (A ⊕ X) + (B ⊕ X) that can be achieved for any X.
+
+where P ⊕ Q is the bitwise XOR operation of the two numbers P and Q.
+
+Note: Bitwise XOR operator will return 1, if both bits are different. If bits are same, it will return 0.
+
+
+
+Example Input
+Input 1:-
+A = 6
+B = 12
+Input 2:-
+A = 4
+B = 9
+
+
+Example Output
+Output 1:-
+10
+output 2:-
+13
+
+
+Example Explanation:-
+Expanation 1:-
+X ^ A + X ^ B = 10 when X = 4
+Explanation 2:-
+X ^ A + X ^ B = 13 when X = 0
+
+===============================================================================
+//logic :- The logic behind this approach is to find the bits that are common between A and B (i.e., where both have 1s) and set them to 0 in both A and B. This way, the XOR operation will only affect the bits where A and B differ. The sum of these XOR operations gives the minimum value.
+
+// A&B - return the common bit that is set. and unset the bits that are different in both.
+	solve : function(A, B){
+ return  (A ^ (A&B)) + (B ^(A&B)) ;
+	}
+
+===============================================================================
